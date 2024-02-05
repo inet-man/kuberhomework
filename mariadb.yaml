@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-hello
+  namespace: homework
+  labels:
+    app: mariadb-hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb-hello
+  template:
+    metadata:
+      labels:
+        app: mariadb-hello
+    spec:
+      containers:
+      - name: mariadb-hello
+        image: mariadb
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MARIADB_ROOT_PASSWORD
+          value: mariapassword
